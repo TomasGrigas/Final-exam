@@ -68,7 +68,7 @@ app.post('/login', (req, res) => {
                 const hashPassword = result[0].password
                 const isPasswordCorrect = bcrypt.compareSync(password, hashPassword);
                 if(isPasswordCorrect){
-                    res.send('Successfully logged in!');
+                    res.send(result[0]);
                 } else {
                     res.send('Incorrect username or password');
                 }              
