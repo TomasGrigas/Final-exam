@@ -1,12 +1,11 @@
-import { Route, Routes } from "react-router";
+
+import { Attendees } from "./pages/Attendees/Attendees";
+
 
 function App() {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<div>Home route</div>} />
-        <Route path="/attendees" element={<div>Attendees route</div>} />
-      </Routes>
+        <Attendees />
     </div>
   );
 }
