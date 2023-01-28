@@ -4,13 +4,12 @@ import { LOGGED_IN_USER } from "../../constants/constants";
 import { API_URL } from "../../constants/constants";
 
 
-
 export const Attendees = () => {
     const [attendees, setAttendees] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(()=>{
-        fetch(`${API_URL}/attendees?userId=${LOGGED_IN_USER}`)
+        fetch(`${API_URL}/attendees?userId=${LOGGED_IN_USER.id}`)
         .then (res => res.json())
         .then(data => {
             setAttendees(data);
@@ -23,8 +22,15 @@ export const Attendees = () => {
     }
 
     return (
-        <div>
-            {attendees.map((attend) => <div key={attend.id}>{attend.name}</div>)}
-        </div>
+        <ul>
+            {attendees.map((attend) => (
+                <li key={attend.id}>
+                   <span>Name {attend.name} </span>
+                   <span>Surname {attend.surname} </span>
+                   <span>Email {attend.email} </span>
+                   <span>Phone number {attend.phone_number} </span>
+                </li>
+            ))}
+        </ul>
     );
 }
