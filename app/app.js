@@ -17,9 +17,9 @@ const mysqlConfig = {
 
 const connection =mysql.createConnection(mysqlConfig);
 
-app.get('/attendees/:id', (req, res) => {
-    const { id } = req.params;
-    connection.execute('SELECT * FROM attendees WHERE id=?', [id], (err, attendees) => {
+app.get('/attendees', (req, res) => {
+    const { userId } = req.query;
+    connection.execute('SELECT * FROM attendees WHERE userId=?', [userId], (err, attendees) => {
         res.send(attendees);
     });
 });
