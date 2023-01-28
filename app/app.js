@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const mysql =require('mysql2')
+const mysql =require('mysql2');
+const bcrypt = require('bcrypt');
 
 require('dotenv').config();
 
@@ -43,10 +44,11 @@ app.post ('/attendees', (req, res) =>{
 
 app.post('/register', (req, res) => {
     const { email, name, surname, password } =req.body;
+    const hashedPassword = bcrypt.hashSync(password, 12);
     
     connection.execute(
         'INSERT INTO users(email, name, surname, password) VALUES(?,?,?,?)',
-        [email, name, surname, password],
+        [email, name, surname, hashedPassword],
         (err, result) => {
             res.sendStatus(200);
         }
