@@ -41,6 +41,18 @@ app.post ('/attendees', (req, res) =>{
     )
 });
 
+app.post('/register', (req, res) => {
+    const { email, name, surname, password } =req.body;
+    
+    connection.execute(
+        'INSERT INTO users(email, name, surname, password) VALUES(?,?,?,?)',
+        [email, name, surname, password],
+        (err, result) => {
+            res.sendStatus(200);
+        }
+    )
+})
+
 const PORT = 8000;
 
 app.listen(PORT, () => console.log (`Express server running on PORT: ${PORT}`));
