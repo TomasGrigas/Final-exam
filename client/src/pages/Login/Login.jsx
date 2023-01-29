@@ -32,7 +32,7 @@ export const Login = ({onSuccess}) => {
                 return res.json();
             }
 
-            throw new String('Incorrect username or password');
+            throw Error ('Incorrect username or password');
         })
         .then((res) => res.json())
         .then((data) => {
