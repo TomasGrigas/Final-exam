@@ -37,10 +37,12 @@ export const Attendees = () => {
     }
 
     const handleAttendeesAdd = (e) => {
+        e.preventDefault();
         fetch(`${process.env.REACT_APP_API_URL}/attendees`, {
             method: 'POST',
             headers:{
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                 authorization: 'Bearer ' + localStorage.getItem(LOCAL_STORAGE_JWT_TOKEN_KEY)
             },
             body: JSON.stringify({
                 name,
@@ -52,12 +54,13 @@ export const Attendees = () => {
         })
         .then((res)=> res.json())
         .then((data) => {
-            setAttendees(data);
-            setName('');
-            setSurname('');
-            setEmail('');
-            setPhoneNumber('');
-
+            if(!data.error){
+                setAttendees(data);
+                setName('');
+                setSurname('');
+                setEmail('');
+                setPhoneNumber('');
+            }
         })
     }
 
