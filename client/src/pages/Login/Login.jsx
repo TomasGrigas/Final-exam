@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { Form } from "../../components/Form/Form";
@@ -7,16 +7,19 @@ import { FormCenter } from "../../components/Form/CenterForm";
 import { FieldSet } from "../../components/FieldSet/FieldSet";
 import { ErrorS } from "../../components/Error/Error"
 import styled from "styled-components";
+import { UserContext } from "../../contexts/UserContextWrapper";
 
 const LinkStyled = styled(Link)`
     align-self: center;
 `;
 
-export const Login = ({onSuccess}) => {
+export const Login = () => {
     const [email, setEmail ] = useState('');
     const [password, setPassword ] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -44,9 +47,10 @@ export const Login = ({onSuccess}) => {
             
         })
         .then((data) => {
-            onSuccess(data);
+            setUser(data);
             setIsLoading(false);
-            setError('')
+            setError('');
+            navigate('/');
         })
 
         .catch((e)=>{
