@@ -50,10 +50,10 @@ app.post('/register', (req, res) => {
         'INSERT INTO users(email, name, surname, password) VALUES(?,?,?,?)',
         [email, name, surname, hashedPassword],
         (err, result) => {
-            res.sendStatus(200);
+            res.send(result);
         }
     )
-})
+});
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
