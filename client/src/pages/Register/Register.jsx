@@ -3,6 +3,15 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
+import { Form } from "../../components/Form/Form";
+import { FormCenter } from "../../components/Form/CenterForm";
+import styled from "styled-components";
+
+const LinkStyled = styled(Link)`
+    align-self: center;
+    text-decoration: none;
+    
+`;
 
 export const Register = () =>{
     const navigate = useNavigate();
@@ -28,8 +37,8 @@ export const Register = () =>{
     };
 
     return(
-            <>
-                <form onSubmit={handleRegister}>
+            <FormCenter>
+                <Form onSubmit={handleRegister}>
                     <Input placeholder="Name"
                         onChange={(e)=> setName(e.target.value)}
                         value={name}
@@ -48,8 +57,8 @@ export const Register = () =>{
                         value={password}
                     /> 
                     <Button> Register </Button>
-                </form>
-                <Link to="/login">Login</Link> 
-            </>
+                    <LinkStyled to="/login">Login</LinkStyled>
+                </Form>
+            </FormCenter>
     )
 }

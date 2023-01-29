@@ -2,6 +2,13 @@ import { useState } from "react"
 import { Link } from "react-router-dom";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
+import { Form } from "../../components/Form/Form";
+import { FormCenter } from "../../components/Form/CenterForm";
+import styled from "styled-components";
+
+const LinkStyled = styled(Link)`
+    align-self: center;
+`;
 
 export const Login = ({onSuccess}) => {
     const[email, setEmail ] = useState('');
@@ -29,8 +36,8 @@ export const Login = ({onSuccess}) => {
      }
 
     return (
-        <>
-            <form onSubmit={handleLogin}>
+        <FormCenter>
+            <Form onSubmit={handleLogin}>
                 <Input placeholder="Email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
@@ -41,8 +48,8 @@ export const Login = ({onSuccess}) => {
                     value={password}
                 />
                 <Button>Login</Button>
-            </form>   
-            <Link to="/register">Register</Link>     
-        </>
+                <LinkStyled to="/register">Register</LinkStyled>  
+            </Form>             
+        </FormCenter>
     )
 }

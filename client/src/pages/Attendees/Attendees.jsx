@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { LOGGED_IN_USER } from "../../constants/constants";
+import { Form } from "../../components/Form/Form";
 
 
 
@@ -55,7 +56,7 @@ export const Attendees = () => {
 
     return (
         <ul>
-            <form on onSubmit={handleAttendeesAdd}>
+            <Form on onSubmit={handleAttendeesAdd}>
                 <Input 
                     placeholder= "name" 
                     required 
@@ -82,7 +83,7 @@ export const Attendees = () => {
                     />
                 <Button>Add</Button>
 
-            </form>
+            </Form>
            
             {attendees.map((attend) => (
                 <li key={attend.id}>
