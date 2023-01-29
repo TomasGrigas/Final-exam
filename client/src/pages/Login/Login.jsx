@@ -8,6 +8,7 @@ import { FieldSet } from "../../components/FieldSet/FieldSet";
 import { ErrorS } from "../../components/Error/Error"
 import styled from "styled-components";
 import { UserContext } from "../../contexts/UserContextWrapper";
+import { LOCAL_STORAGE_JWT_TOKEN_KEY } from "../../constants/constants";
 
 const LinkStyled = styled(Link)`
     align-self: center;
@@ -21,7 +22,7 @@ export const Login = () => {
     const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = (e)  => {
         e.preventDefault();
         setIsLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/login`,{
@@ -47,7 +48,9 @@ export const Login = () => {
             
         })
         .then((data) => {
-            setUser(data);
+            const {id, email, token } = data;
+            localStorage.setItem(LOCAL_STORAGE_JWT_TOKEN_KEY, token);
+            setUser({id, email});
             setIsLoading(false);
             setError('');
             navigate('/');

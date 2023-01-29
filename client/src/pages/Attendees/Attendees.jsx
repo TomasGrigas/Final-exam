@@ -4,6 +4,7 @@ import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { Form } from "../../components/Form/Form";
 import { UserContext } from "../../contexts/UserContextWrapper";
+import { LOCAL_STORAGE_JWT_TOKEN_KEY } from "../../constants/constants";
 
 
 
@@ -17,10 +18,16 @@ export const Attendees = () => {
     const { user } = useContext(UserContext);
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API_URL}/attendees?userId=${user.id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/attendees?userId=${user.id}`, {
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem(LOCAL_STORAGE_JWT_TOKEN_KEY)
+            }
+        })
         .then (res => res.json())
         .then(data => {
-            setAttendees(data);
+            if(!data.error){
+                setAttendees(data);
+            }
             setIsLoading(false);
         });
     },[user.id])
@@ -30,7 +37,6 @@ export const Attendees = () => {
     }
 
     const handleAttendeesAdd = (e) => {
-        e.preventDefault();
         fetch(`${process.env.REACT_APP_API_URL}/attendees`, {
             method: 'POST',
             headers:{
