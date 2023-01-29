@@ -31,21 +31,26 @@ export const Login = ({onSuccess}) => {
             }) 
         })
         .then((res)=>{
-            if (res.status === 200){
-                return res.json();
+            if (res.status === 401){
+                throw new Error ('Incorrect username or password');
             }
 
-            throw Error ('Incorrect username or password');
+            if(!res.ok){
+                throw new Error ('Something went wrong');
+            }
+
+            return res.json();
+            
         })
         .then((data) => {
             onSuccess(data);
             setIsLoading(false);
+            setError('')
         })
 
         .catch((e)=>{
-            setError(String(e));
+            setError(e.message);
             setIsLoading(false);
-
         })
      }
 
