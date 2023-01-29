@@ -5,6 +5,7 @@ import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { Form } from "../../components/Form/Form";
 import { FormCenter } from "../../components/Form/CenterForm";
+import { ErrorS } from "../../components/Error/Error";
 import styled from "styled-components";
 
 const LinkStyled = styled(Link)`
@@ -54,7 +55,7 @@ export const Register = () =>{
     return(
             <FormCenter>
                 <Form onSubmit={handleRegister}>
-                    {error && <div>{error}</div>}
+                    {error && <ErrorS>{error}</ErrorS>}
                     <Input placeholder="Name"
                         required
                         onChange={(e)=> setName(e.target.value)}

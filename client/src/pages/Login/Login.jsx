@@ -5,6 +5,7 @@ import { Input } from "../../components/Input/Input";
 import { Form } from "../../components/Form/Form";
 import { FormCenter } from "../../components/Form/CenterForm";
 import { FieldSet } from "../../components/FieldSet/FieldSet";
+import { ErrorS } from "../../components/Error/Error"
 import styled from "styled-components";
 
 const LinkStyled = styled(Link)`
@@ -58,7 +59,7 @@ export const Login = ({onSuccess}) => {
         <FormCenter>
             <Form onSubmit={handleLogin}>
                 <FieldSet disabled={isLoading}>
-                    {error && <div>{error}</div>}
+                    {error && <ErrorS>{error}</ErrorS>}
                     <Input placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
