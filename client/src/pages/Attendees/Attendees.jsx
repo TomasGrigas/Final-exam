@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react"
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
-import { LOGGED_IN_USER } from "../../constants/constants";
 import { Form } from "../../components/Form/Form";
+import { UserContext } from "../../contexts/UserContextWrapper";
 
 
 
@@ -14,15 +14,16 @@ export const Attendees = () => {
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
     const [phone_number, setPhoneNumber] = useState('');
+    const { user } = useContext(UserContext);
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API_URL}/attendees?userId=${LOGGED_IN_USER.id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/attendees?userId=${user.id}`)
         .then (res => res.json())
         .then(data => {
             setAttendees(data);
             setIsLoading(false);
         });
-    },[])
+    },[user.id])
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -40,7 +41,7 @@ export const Attendees = () => {
                 surname,
                 email,
                 phone_number,
-                userId: 1
+                userId: user.id
             })
         })
         .then((res)=> res.json())
@@ -71,12 +72,14 @@ export const Attendees = () => {
                      />
                 <Input
                     placeholder= "email"
+                    type="email"
                     required
                     onChange={(e) => setEmail(e.target.value)}
                     value ={email}
                      />
                 <Input
-                    placeholder= "phone number"    
+                    placeholder= "phone number"  
+                    type="number"  
                     required
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     value ={phone_number}
