@@ -11,8 +11,9 @@ const LinkStyled = styled(Link)`
 `;
 
 export const Login = ({onSuccess}) => {
-    const[email, setEmail ] = useState('');
-    const[password, setPassword ] = useState('');
+    const [email, setEmail ] = useState('');
+    const [password, setPassword ] = useState('');
+    const [error, setError] = useState('');
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -26,18 +27,28 @@ export const Login = ({onSuccess}) => {
                 password
             }) 
         })
+        .then((res)=>{
+            if (res.status === 200){
+                return res.json();
+            }
+
+            throw new String('Incorrect username or password');
+        })
         .then((res) => res.json())
         .then((data) => {
             onSuccess(data);
         })
+
         .catch((e)=>{
-            console.log(e);
+            setError(String(e));
+
         })
      }
 
     return (
         <FormCenter>
             <Form onSubmit={handleLogin}>
+                {error && <div>{error}</div>}
                 <Input placeholder="Email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}

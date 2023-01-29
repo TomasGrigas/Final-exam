@@ -63,6 +63,7 @@ app.post('/login', (req, res) => {
         [email],
         (err, result) => {
             if(result.length === 0) {
+                res.status(401);
                 res.send('Incorrect username or password');
             } else {
                 const hashPassword = result[0].password
@@ -70,6 +71,7 @@ app.post('/login', (req, res) => {
                 if(isPasswordCorrect){
                     res.send(result[0]);
                 } else {
+                    res.status(401);
                     res.send('Incorrect username or password');
                 }              
             }
