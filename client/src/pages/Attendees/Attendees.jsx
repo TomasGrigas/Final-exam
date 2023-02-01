@@ -64,6 +64,20 @@ export const Attendees = () => {
         })
     }
 
+    const handleDeleteAttendees =(id) => {
+        if(window.confirm('Do you really want to DELETE this attendee?')=== true){
+            fetch(`${process.env.REACT_APP_API_URL}/attendees/${id}`,{
+                method: 'DELETE',
+                headers:{
+                    authorization: 'Bearer ' + localStorage.getItem(LOCAL_STORAGE_JWT_TOKEN_KEY)
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                setAttendees(data);
+            });
+        }
+    }
     return (
         <ul>
             <Form on onSubmit={handleAttendeesAdd}>
@@ -98,11 +112,12 @@ export const Attendees = () => {
             </Form>
            
             {attendees.map((attend) => (
-                <li key={attend.id}>
-                   <span>Name {attend.name} </span>
-                   <span>Surname {attend.surname} </span>
-                   <span>Email {attend.email} </span>
-                   <span>Phone number {attend.phone_number} </span>
+                <li key={attend.id} onClick={() => handleDeleteAttendees(attend.id)}>
+                   <div>Name {attend.name} </div>
+                   <div>Surname {attend.surname} </div>
+                   <div>Email {attend.email} </div>
+                   <div>Phone number {attend.phone_number} </div>
+                   <button>Delete</button>
                 </li>
             ))}
         </ul>
