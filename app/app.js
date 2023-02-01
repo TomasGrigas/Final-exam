@@ -21,10 +21,15 @@ const mysqlConfig = {
 
 const connection =mysql.createConnection(mysqlConfig);
 
+const getUserFromToken = (req) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const user = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    return user;
+}
+
 const verifyToken =(req, res, next) => {
     try {
-        const token = req.headers.authorization.split(' ')[1]
-        jwt.verify(token, process.env.JWT_SECRET_KEY);
+        getUserFromToken(req);
         next();
     } catch(e) {
         res.send({error:'Invalid Token'});
@@ -32,8 +37,7 @@ const verifyToken =(req, res, next) => {
 }
 
 app.get('/attendees', verifyToken, (req, res) => {
-    const token = req.headers.authorization.split(' ')[1]
-    const user = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const user = getUserFromToken(req);
 
     connection.execute('SELECT * FROM attendees WHERE userId=?', [user.id], (err, attendees) => {
         res.send(attendees);
@@ -41,13 +45,14 @@ app.get('/attendees', verifyToken, (req, res) => {
 });
 
 app.post ('/attendees',verifyToken, (req, res) =>{
-    const {name, surname, email, phone_number, userId } =req.body;
+    const {name, surname, email, phone_number} =req.body;
+    const {id} = getUserFromToken(req);
 
     connection.execute(
-        'INSERT INTO attendees (name, surname, email, phone_number, userId) VALUES(?,?,?,?,?)',[name, surname, email, phone_number, userId],
+        'INSERT INTO attendees (name, surname, email, phone_number, userId) VALUES(?,?,?,?,?)',[name, surname, email, phone_number, id],
         (err, result) => {
             connection.execute('SELECT * FROM attendees WHERE userId=?', 
-            [userId],
+            [id],
             (err, attendees) => {
                 res.send(attendees);
             });
