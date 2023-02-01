@@ -32,8 +32,10 @@ const verifyToken =(req, res, next) => {
 }
 
 app.get('/attendees', verifyToken, (req, res) => {
-    const { userId } = req.query;
-    connection.execute('SELECT * FROM attendees WHERE userId=?', [userId], (err, attendees) => {
+    const token = req.headers.authorization.split(' ')[1]
+    const user = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+    connection.execute('SELECT * FROM attendees WHERE userId=?', [user.id], (err, attendees) => {
         res.send(attendees);
     });
 });
