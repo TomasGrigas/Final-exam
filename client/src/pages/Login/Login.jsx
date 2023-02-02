@@ -7,7 +7,7 @@ import { FieldSet } from "../../components/FieldSet/FieldSet";
 import { ErrorS } from "../../components/Error/Error"
 import { UserContext } from "../../contexts/UserContextWrapper";
 import { LOCAL_STORAGE_JWT_TOKEN_KEY } from "../../constants/constants";
-import { FormImage, ImageStyled, Header, LinkStyled, RegisterLinkStyled, LoginLinkStyled, LinkColorStyled} from "../../components/StyledComponents/styledcomponents";
+import { LoginFormImage, ImageStyled, Header, LinkStyled, RegisterLinkStyled, LoginLinkStyled, LinkColorStyled} from "../../components/StyledComponents/styledcomponents";
 
 
 export const Login = () => {
@@ -59,31 +59,31 @@ export const Login = () => {
      }
 
     return (
-        <div>
-            <Header>
-                <LoginLinkStyled to="/">LOGIN</LoginLinkStyled>
-                <RegisterLinkStyled  to="/Register">REGISTER</RegisterLinkStyled >
-            </Header>
-        <FormImage>
-            <Form onSubmit={handleLogin}>
-                <ImageStyled>COLDPLAY</ImageStyled>
-                <h1>WORLD TOUR 2023</h1>
-                <FieldSet disabled={isLoading}>
-                    {error && <ErrorS>{error}</ErrorS>}
-                    <Input placeholder="Email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
-                    />
-                    <Input placeholder="Password"
-                        type ="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
-                    />
-                </FieldSet>
-                <Button disable={isLoading}>Login</Button>
-                <LinkStyled>Not yet Registered? Click here to<LinkColorStyled to="/register">REGISTER</LinkColorStyled></LinkStyled>   
-            </Form>             
-        </FormImage>
-        </div>
+            <div>
+                <Header>
+                    <LoginLinkStyled to="/">LOGIN</LoginLinkStyled>
+                    <RegisterLinkStyled  to="/Register">REGISTER</RegisterLinkStyled >
+                </Header>
+                <LoginFormImage>
+                    <Form onSubmit={handleLogin}>
+                        <ImageStyled>COLDPLAY</ImageStyled>
+                        <h1>WORLD TOUR 2023</h1>
+                        <FieldSet disabled={isLoading}>
+                        {error && <ErrorS>{error}</ErrorS>}
+                            <Input placeholder="Email"
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
+                            />
+                            <Input placeholder="Password"
+                                type ="Password"
+                                onChange={(e) => setPassword(e.target.value)}
+                                value={password}
+                            />
+                        </FieldSet>
+                        <Button disable={isLoading}>Login</Button>
+                        <LinkStyled>Not yet Registered? Click here to<LinkColorStyled to="/register">REGISTER</LinkColorStyled></LinkStyled>   
+                    </Form>             
+                </LoginFormImage>
+            </div>
     )
 }

@@ -1,18 +1,23 @@
 import styled from "styled-components";
 import LoginImage from '../../images/LoginImage.jpeg';
+import RegisterImage from '../../images/RegisterImage.jpeg';
 import ColdplayImage from '../../images/ColdplayImage.jpeg';
 import { FormCenter } from "../Form/CenterForm";
 import { Link } from "react-router-dom";
 
-export const FormImage = styled(FormCenter)`
-        background-image:url(${LoginImage});
-        background-size: cover;
+export const LoginFormImage = styled(FormCenter)`
+    background-image:url(${LoginImage});
+    background-size: cover;
+`;
+export const RegisterFormImage = styled(FormCenter)`
+    background-image:url(${RegisterImage});
+    background-size: cover;
 `;
 export const ImageStyled = styled.div`
-        align-self: center;
-        width:225px;
-        height:225px;
-        background-image:url(${ColdplayImage});
+    align-self: center;
+    width:225px;
+    height:225px;
+    background-image:url(${ColdplayImage});
 `;
 export const LinkStyled = styled.div`
     align-self: center;
@@ -21,7 +26,7 @@ export const LinkStyled = styled.div`
 
 `;
 export const LinkColorStyled = styled(Link)`
-    color:white;
+    color:light-blue;
     text-decoration: none;
     margin: 3px;
 `;   

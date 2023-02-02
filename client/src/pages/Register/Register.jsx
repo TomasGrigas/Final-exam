@@ -1,18 +1,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { Form } from "../../components/Form/Form";
-import { FormCenter } from "../../components/Form/CenterForm";
 import { ErrorS } from "../../components/Error/Error";
-import styled from "styled-components";
-
-const LinkStyled = styled(Link)`
-    align-self: center;
-    text-decoration: none;
-    
-`;
+import { RegisterFormImage, ImageStyled, Header, LinkStyled, RegisterLinkStyled, LoginLinkStyled, LinkColorStyled} from "../../components/StyledComponents/styledcomponents";
 
 export const Register = () =>{
     const navigate = useNavigate();
@@ -53,37 +45,46 @@ export const Register = () =>{
     };
 
     return(
-            <FormCenter>
-                <Form onSubmit={handleRegister}>
-                    {error && <ErrorS>{error}</ErrorS>}
-                    <Input placeholder="Name"
-                        required
-                        onChange={(e)=> setName(e.target.value)}
-                        value={name}
-                        disabled={isLoading}
-                    />
-                    <Input placeholder="Surname"
-                        required
-                        onChange={(e)=> setSurname(e.target.value)}
-                        value={surname}
-                        disabled={isLoading}
-                    />
-                    <Input placeholder="Email"
-                        required
-                        onChange={(e)=> setEmail(e.target.value)}
-                        value={email}
-                        disabled={isLoading}
-                    />
-                    <Input placeholder="Password"
-                        required
-                        type="password"
-                        onChange={(e)=> setPassword(e.target.value)}
-                        value={password}
-                        disabled={isLoading}
-                    /> 
-                    <Button> Register </Button>
-                    <LinkStyled to="/login">Login</LinkStyled>
-                </Form>
-            </FormCenter>
+        <div>
+             <Header>
+                <LoginLinkStyled to="/">LOGIN</LoginLinkStyled>
+                <RegisterLinkStyled  to="/Register">REGISTER</RegisterLinkStyled >
+            </Header>
+                <RegisterFormImage>
+                    <Form onSubmit={handleRegister}>
+                        <ImageStyled>COLDPLAY</ImageStyled>
+                        <h1>WORLD TOUR 2023</h1>
+                        {error && <ErrorS>{error}</ErrorS>}
+                        <Input placeholder="Name"
+                            required
+                            onChange={(e)=> setName(e.target.value)}
+                            value={name}
+                            disabled={isLoading}
+                        />
+                        <Input placeholder="Surname"
+                            required
+                            onChange={(e)=> setSurname(e.target.value)}
+                            value={surname}
+                            disabled={isLoading}
+                        />
+                        <Input placeholder="Email"
+                            required
+                            onChange={(e)=> setEmail(e.target.value)}
+                            value={email}
+                            disabled={isLoading}
+                        />
+                        <Input placeholder="Password"
+                            required
+                            type="password"
+                            onChange={(e)=> setPassword(e.target.value)}
+                            value={password}
+                            disabled={isLoading}
+                        /> 
+                        <Button> Register </Button>
+                        <LinkStyled> Already registered? Click here to<LinkColorStyled to="/login">LOGIN</LinkColorStyled></LinkStyled>   
+                    </Form>
+                </RegisterFormImage>
+        </div>
+
     )
 }
