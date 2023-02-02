@@ -1,48 +1,14 @@
 import { useContext, useState } from "react"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { Form } from "../../components/Form/Form";
-import { FormCenter } from "../../components/Form/CenterForm";
 import { FieldSet } from "../../components/FieldSet/FieldSet";
 import { ErrorS } from "../../components/Error/Error"
-import styled from "styled-components";
 import { UserContext } from "../../contexts/UserContextWrapper";
 import { LOCAL_STORAGE_JWT_TOKEN_KEY } from "../../constants/constants";
-import ColdplayImage from '../../images/ColdplayImage.jpeg'
+import { FormImage, ImageStyled, Header, LinkStyled, RegisterLinkStyled, LoginLinkStyled, LinkColorStyled} from "../../components/StyledComponents/styledcomponents";
 
-const LinkStyled = styled.div`
-    align-self: center;
-    color: black;
-    text-decoration: none;
-
-`;
-const LinkColorStyled = styled(Link)`
-    color:white;
-    text-decoration: none;
-    margin: 3px;
-`;   
-const Header = styled.div`
-    padding: 20px 40px;
-    background-color: black;
-`;
-const LoginLinkStyled = styled(Link)`
-    color: white;
-    margin: 10px;
-    text-decoration: none;
-    `
-const RegisterLinkStyled = styled(Link)`
-    color: white;
-    text-decoration: none;
-    `
-
- const ImageStyled = styled.div`
-    align-self: center;
-    width:225px;
-    height:225px;
-    background-image:url(${ColdplayImage});
- `   
- 
 
 export const Login = () => {
     const [email, setEmail ] = useState('');
@@ -98,7 +64,7 @@ export const Login = () => {
                 <LoginLinkStyled to="/">LOGIN</LoginLinkStyled>
                 <RegisterLinkStyled  to="/Register">REGISTER</RegisterLinkStyled >
             </Header>
-        <FormCenter>
+        <FormImage>
             <Form onSubmit={handleLogin}>
                 <ImageStyled>COLDPLAY</ImageStyled>
                 <h1>WORLD TOUR 2023</h1>
@@ -117,7 +83,7 @@ export const Login = () => {
                 <Button disable={isLoading}>Login</Button>
                 <LinkStyled>Not yet Registered? Click here to<LinkColorStyled to="/register">REGISTER</LinkColorStyled></LinkStyled>   
             </Form>             
-        </FormCenter>
+        </FormImage>
         </div>
     )
 }
