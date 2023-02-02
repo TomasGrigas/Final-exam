@@ -9,10 +9,40 @@ import { ErrorS } from "../../components/Error/Error"
 import styled from "styled-components";
 import { UserContext } from "../../contexts/UserContextWrapper";
 import { LOCAL_STORAGE_JWT_TOKEN_KEY } from "../../constants/constants";
+import ColdplayImage from '../../images/ColdplayImage.jpeg'
 
-const LinkStyled = styled(Link)`
+const LinkStyled = styled.div`
     align-self: center;
+    color: black;
+    text-decoration: none;
+
 `;
+const LinkColorStyled = styled(Link)`
+    color:white;
+    text-decoration: none;
+    margin: 3px;
+`;   
+const Header = styled.div`
+    padding: 20px 40px;
+    background-color: black;
+`;
+const LoginLinkStyled = styled(Link)`
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    `
+const RegisterLinkStyled = styled(Link)`
+    color: white;
+    text-decoration: none;
+    `
+
+ const ImageStyled = styled.div`
+    align-self: center;
+    width:225px;
+    height:225px;
+    background-image:url(${ColdplayImage});
+ `   
+ 
 
 export const Login = () => {
     const [email, setEmail ] = useState('');
@@ -63,8 +93,15 @@ export const Login = () => {
      }
 
     return (
+        <div>
+            <Header>
+                <LoginLinkStyled to="/">LOGIN</LoginLinkStyled>
+                <RegisterLinkStyled  to="/Register">REGISTER</RegisterLinkStyled >
+            </Header>
         <FormCenter>
             <Form onSubmit={handleLogin}>
+                <ImageStyled>COLDPLAY</ImageStyled>
+                <h1>WORLD TOUR 2023</h1>
                 <FieldSet disabled={isLoading}>
                     {error && <ErrorS>{error}</ErrorS>}
                     <Input placeholder="Email"
@@ -78,8 +115,9 @@ export const Login = () => {
                     />
                 </FieldSet>
                 <Button disable={isLoading}>Login</Button>
-                <LinkStyled to="/register">Register</LinkStyled>  
+                <LinkStyled>Not yet Registered? Click here to<LinkColorStyled to="/register">REGISTER</LinkColorStyled></LinkStyled>   
             </Form>             
         </FormCenter>
+        </div>
     )
 }

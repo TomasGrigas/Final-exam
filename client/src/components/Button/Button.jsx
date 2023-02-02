@@ -2,8 +2,8 @@
 import styled from "styled-components"
 
 const ButtonStyled = styled.button`
-    background-color: grey;
-    border: 1px solid light-grey;
+    background-color: black;
+    border: 1px solid black;
     border-radius: 10px;
     padding: 10px 20px;
     color: white;

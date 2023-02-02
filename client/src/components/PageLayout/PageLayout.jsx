@@ -13,9 +13,10 @@ export const PageLayout= () => {
     } 
 
     const handleLogOut = () => {
+        navigate('/login');
         localStorage.removeItem(LOCAL_STORAGE_JWT_TOKEN_KEY);
         setUser(null);
-        navigate('/login');
+        
     }
 
     return(
