@@ -69,6 +69,7 @@ export const Register = () =>{
                         />
                         <Input placeholder="Email"
                             required
+                            type="email"
                             onChange={(e)=> setEmail(e.target.value)}
                             value={email}
                             disabled={isLoading}
