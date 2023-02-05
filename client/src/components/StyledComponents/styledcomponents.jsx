@@ -19,11 +19,14 @@ export const ImageStyled = styled.div`
     height:225px;
     background-image:url(${ColdplayImage});
 `;
+export const CenterImageStyled = styled.div`
+    display: flex;
+    justify-content: center;
+`;
 export const LinkStyled = styled.div`
     align-self: center;
     color: black;
     text-decoration: none;
-
 `;
 export const LinkColorStyled = styled(Link)`
     color:light-blue;
@@ -38,12 +41,38 @@ export const LoginLinkStyled = styled(Link)`
     color: white;
     margin: 10px;
     text-decoration: none;
-    `
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 5px;
+`;
 export const RegisterLinkStyled = styled(Link)`
     color: white;
     text-decoration: none;
-    `
-
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 5px;
+`;
+export const AttendeesBgStyled = styled.div`
+    background-color:black;
+    height: 200vh;
+`;
+export const TourStyled = styled.h1`
+    display: flex;
+    justify-content: center;
+    color:white;
+`;
+export const OutletStyled = styled.div`
+    diplay: flex;
+    margin: 0px 300px;
+    color: white;
+`;
 
 
  

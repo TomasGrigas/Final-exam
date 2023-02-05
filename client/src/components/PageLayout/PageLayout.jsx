@@ -3,6 +3,8 @@ import { Navigate, Outlet, useNavigate } from "react-router"
 import { LOCAL_STORAGE_JWT_TOKEN_KEY } from "../../constants/constants"
 import { UserContext } from "../../contexts/UserContextWrapper"
 import { Button } from "../Button/Button"
+import { Header, AttendeesBgStyled, ImageStyled, CenterImageStyled , TourStyled, OutletStyled} from "../StyledComponents/styledcomponents"
+
 
 export const PageLayout= () => {
     const {user, setUser}  = useContext(UserContext);
@@ -20,9 +22,18 @@ export const PageLayout= () => {
     }
 
     return(
-        <div>
-            <Button onClick ={handleLogOut}>Log out</Button>
-            <Outlet />
-        </div>
+        <AttendeesBgStyled>
+            <Header>
+                <Button onClick ={handleLogOut}>Log out</Button>
+            </Header>
+            <CenterImageStyled>
+                <ImageStyled>COLDPLAY</ImageStyled>
+            </CenterImageStyled>
+            <TourStyled>WORLD TOUR 2023</TourStyled>
+            <OutletStyled>
+                <Outlet />
+            </OutletStyled>
+            
+        </AttendeesBgStyled>
     )
 }

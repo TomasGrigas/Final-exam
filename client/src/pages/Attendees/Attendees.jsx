@@ -1,12 +1,10 @@
 import { useContext, useState } from "react";
 import { useEffect } from "react"
-import { Button } from "../../components/Button/Button";
+import { Button, DeleteButttonStyled} from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { Form } from "../../components/Form/Form";
 import { UserContext } from "../../contexts/UserContextWrapper";
 import { LOCAL_STORAGE_JWT_TOKEN_KEY } from "../../constants/constants";
-
-
 
 export const Attendees = () => {
     const [attendees, setAttendees] = useState([]);
@@ -113,11 +111,11 @@ export const Attendees = () => {
            
             {attendees.map((attend) => (
                 <li key={attend.id} onClick={() => handleDeleteAttendees(attend.id)}>
-                   <div>Name {attend.name} </div>
-                   <div>Surname {attend.surname} </div>
-                   <div>Email {attend.email} </div>
-                   <div>Phone number {attend.phone_number} </div>
-                   <button>Delete</button>
+                   <div>Name: {attend.name} </div>
+                   <div>Surname: {attend.surname} </div>
+                   <div>Email: {attend.email} </div>
+                   <div>Phone number: {attend.phone_number} </div>
+                   <DeleteButttonStyled>Delete</DeleteButttonStyled>
                 </li>
             ))}
         </ul>
