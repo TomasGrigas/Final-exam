@@ -15,10 +15,10 @@ export const PageLayout= () => {
     } 
 
     const handleLogOut = () => {
-        navigate('/login');
         localStorage.removeItem(LOCAL_STORAGE_JWT_TOKEN_KEY);
-        setUser(null);
-        
+        setUser(null);   
+        navigate('/login');  
+        window.location.reload()
     }
 
     return(
@@ -30,6 +30,7 @@ export const PageLayout= () => {
                 <ImageStyled>COLDPLAY</ImageStyled>
             </CenterImageStyled>
             <TourStyled>WORLD TOUR 2023</TourStyled>
+            <TourStyled>Attendeees List</TourStyled>
             <OutletStyled>
                 <Outlet />
             </OutletStyled>
