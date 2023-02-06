@@ -30,7 +30,7 @@ export const PageLayout= () => {
                 <ImageStyled>COLDPLAY</ImageStyled>
             </CenterImageStyled>
             <TourStyled>WORLD TOUR 2023</TourStyled>
-            <TourStyled>Attendeees List</TourStyled>
+            <TourStyled>Attendees List</TourStyled>
             <OutletStyled>
                 <Outlet />
             </OutletStyled>
