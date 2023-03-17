@@ -42,7 +42,9 @@ export const LoginLinkStyled = styled(Link)`
     margin: 10px;
     text-decoration: none;
     background-color: black;
-    border: 1px solid white;
+    border-width: 1px;
+    border-color: red yellow orange blue;
+    border-style: solid;
     border-radius: 10px;
     padding: 10px 20px;
     margin: 5px;
@@ -58,7 +60,9 @@ export const RegisterLinkStyled = styled(Link)`
     margin: 10px;
     text-decoration: none;
     background-color: black;
-    border: 1px solid white;
+    border-width: 1px;
+    border-color: red yellow orange blue;
+    border-style: solid;
     border-radius: 10px;
     padding: 10px 20px;
     margin: 5px;
@@ -81,6 +85,18 @@ export const OutletStyled = styled.div`
     margin: 0px 300px;
     color: white;
 `;
-
+export const AttendeesListStyled = styled.li`
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between;
+    border-width: 1px;
+    border-color: red yellow orange blue;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: white;
+    margin: 5px;
+    align-items: center;
+`;
 
  

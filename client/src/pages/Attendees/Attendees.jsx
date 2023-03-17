@@ -5,6 +5,7 @@ import { Input } from "../../components/Input/Input";
 import { Form } from "../../components/Form/Form";
 import { UserContext } from "../../contexts/UserContextWrapper";
 import { LOCAL_STORAGE_JWT_TOKEN_KEY } from "../../constants/constants";
+import { AttendeesListStyled } from "../../components/StyledComponents/styledcomponents";
 
 export const Attendees = () => {
     const [attendees, setAttendees] = useState([]);
@@ -110,13 +111,17 @@ export const Attendees = () => {
             </Form>
            
             {attendees.map((attend) => (
-                <li key={attend.id} >
-                   <div>Name: {attend.name} </div>
-                   <div>Surname: {attend.surname} </div>
-                   <div>Email: {attend.email} </div>
-                   <div>Phone number: {attend.phone_number} </div>
-                   <DeleteButttonStyled onClick={() => handleDeleteAttendees(attend.id)}>Delete</DeleteButttonStyled>
-                </li>
+                <AttendeesListStyled key={attend.id} >
+                    <div>
+                        <div>Name: {attend.name} </div>
+                        <div>Surname: {attend.surname} </div>
+                        <div>Email: {attend.email} </div>
+                        <div>Phone number: {attend.phone_number} </div>
+                    </div>
+                    <div>
+                        <DeleteButttonStyled onClick={() => handleDeleteAttendees(attend.id)}>Delete</DeleteButttonStyled>
+                    </div>
+                </AttendeesListStyled>
             ))}
         </ul>
     );
