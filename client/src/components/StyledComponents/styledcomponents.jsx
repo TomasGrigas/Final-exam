@@ -46,6 +46,10 @@ export const LoginLinkStyled = styled(Link)`
     border-radius: 10px;
     padding: 10px 20px;
     margin: 5px;
+    &:hover {
+        background-color: darkred;
+        transition: 0.2s;
+        }
 `;
 export const RegisterLinkStyled = styled(Link)`
     color: white;
@@ -58,6 +62,10 @@ export const RegisterLinkStyled = styled(Link)`
     border-radius: 10px;
     padding: 10px 20px;
     margin: 5px;
+    &:hover {
+        background-color: darkred;
+        transition: 0.2s;
+        }
 `;
 export const AttendeesBgStyled = styled.div`
     background-color:black;

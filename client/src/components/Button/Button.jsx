@@ -9,9 +9,10 @@ const ButtonStyled = styled.button`
     color: white;
     margin: 5px;
 
-    &:disabled {
-        opacity: 0,5px
-    }
+    &:hover {
+        background-color: darkred;
+        transition: 0.2s;
+        }
 `;
 
 export const DeleteButttonStyled = styled(ButtonStyled)`
