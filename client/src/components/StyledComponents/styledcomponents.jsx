@@ -29,7 +29,7 @@ export const LinkStyled = styled.div`
     text-decoration: none;
 `;
 export const LinkColorStyled = styled(Link)`
-    color:light-blue;
+    color: orange;
     text-decoration: none;
     margin: 3px;
 `;   
