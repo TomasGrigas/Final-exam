@@ -110,12 +110,12 @@ export const Attendees = () => {
             </Form>
            
             {attendees.map((attend) => (
-                <li key={attend.id} onClick={() => handleDeleteAttendees(attend.id)}>
+                <li key={attend.id} >
                    <div>Name: {attend.name} </div>
                    <div>Surname: {attend.surname} </div>
                    <div>Email: {attend.email} </div>
                    <div>Phone number: {attend.phone_number} </div>
-                   <DeleteButttonStyled>Delete</DeleteButttonStyled>
+                   <DeleteButttonStyled onClick={() => handleDeleteAttendees(attend.id)}>Delete</DeleteButttonStyled>
                 </li>
             ))}
         </ul>
