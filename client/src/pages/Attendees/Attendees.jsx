@@ -6,6 +6,7 @@ import { Form } from "../../components/Form/Form";
 import { UserContext } from "../../contexts/UserContextWrapper";
 import { LOCAL_STORAGE_JWT_TOKEN_KEY } from "../../constants/constants";
 import { AttendeesListStyled } from "../../components/StyledComponents/styledcomponents";
+import { DateTime } from 'luxon';
 
 export const Attendees = () => {
     const [attendees, setAttendees] = useState([]);
@@ -117,6 +118,7 @@ export const Attendees = () => {
                         <div>Surname: {attend.surname} </div>
                         <div>Email: {attend.email} </div>
                         <div>Phone number: {attend.phone_number} </div>
+                        <div>Registration date: ({DateTime.fromISO(attend.timestamp).toFormat('yyyy-LL-dd HH:mm')}) </div>
                     </div>
                     <div>
                         <DeleteButttonStyled onClick={() => handleDeleteAttendees(attend.id)}>Delete</DeleteButttonStyled>
